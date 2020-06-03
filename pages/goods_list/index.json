@@ -1,0 +1,10 @@
+{
+	"usingComponents": {
+		"SearchInput": "../../component/Search/SearchInput",
+		"Tabs": "../../component/Tabs/Tabs",
+		"van-card": "@vant/weapp/card/index"
+	},
+	"navigationBarTitleText": "商品列表",
+	"enablePullDownRefresh": true,
+	"backgroundTextStyle": "dark"
+}

@@ -1,0 +1,25 @@
+<!--pages/goods_list/index.wxml-->
+<!-- 搜索框组件 -->
+<SearchInput></SearchInput>
+<!-- tabs组件 -->
+<Tabs tabs="{{tabs}}" bindtabItemChange="handleTabItemChange"></Tabs>
+
+<block wx:if="{{tabs[0].isActive}}">
+  <view class="first_tab">
+    <navigator
+      wx:for="{{goodsList}}"
+      wx:key="goods_id"
+      url="/pages/goods_detail/index?goods_id={{item.goods_id}}"
+    >
+      <van-card
+        num="{{item.goods_number}}"
+        price="{{item.goods_price}}"
+        desc
+        title="{{item.goods_name}}"
+        thumb="{{ item.goods_small_logo || '/icons/Erro_s.png' }}"
+      />
+    </navigator>
+  </view>
+</block>
+<block wx:if="{{tabs[1].isActive}}"></block>
+<block wx:if="{{tabs[2].isActive}}"></block>
