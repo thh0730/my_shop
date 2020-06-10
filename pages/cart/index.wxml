@@ -1,2 +1,85 @@
 <!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<!-- 收货地址 -->
+<view class="revice_address_row">
+  <!-- 收货地址不存在时 按钮显示 对象 空对象 boolean类型也是true -->
+  <view class="address_btn" wx:if="{{!address.userName}}">
+    <button bindtap="handleChooseAdress" type="primary" plain>获取收货地址</button>
+  </view>
+
+  <!-- 当收货地址存在 详细信息显示 -->
+  <view wx:else class="user_info_row">
+    <view class="user_info">
+      <view>收件人: {{address.userName}}</view>
+      <view>{{address.all}}</view>
+    </view>
+    <view class="user_phone">{{address.telNumber}}</view>
+  </view>
+
+  <!-- 购物车内容 -->
+  <view class="cart_content">
+    <view class="cart_title">购物车</view>
+    <view class="cart_main">
+      <!-- cartInfo数组长度不为0时显示 为0则显示提示 -->
+      <block wx:if="{{cartInfo.length !== 0}}">
+        <view class="cart_item" wx:for="{{cartInfo}}">
+          <!-- 复选框 -->
+          <view class="cart_chk_wrap flex_center">
+            <checkbox-group data-id="{{item.goods_id}}" bindchange="handleItemCheck">
+              <checkbox checked="{{item.checked}}" />
+            </checkbox-group>
+          </view>
+          <!-- 商品图片 -->
+          <navigator class="cart_img_wrap flex_center">
+            <image mode="widthFix" src="{{item.goods_small_logo}}" />
+          </navigator>
+          <!-- 商品信息 -->
+          <view class="cart_info_wrap">
+            <view class="goods_name">{{item.goods_name}}</view>
+            <view class="goods_price_wrap">
+              <view class="goods_price">{{item.goods_price}}</view>
+              <view class="cart_num_tool">
+                <view
+                  class="num_edit flex_center"
+                  bindtap="handleItemNumEdit"
+                  data-id="{{item.goods_id}}"
+                  data-operation="{{-1}}"
+                >-</view>
+                <view class="goods_num flex_center">{{item.num}}</view>
+                <view
+                  class="num_edit flex_center"
+                  bindtap="handleItemNumEdit"
+                  data-id="{{item.goods_id}}"
+                  data-operation="{{1}}"
+                >+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!-- 未选购商品时 -->
+      <block wx:else>
+        <image class="gouwuche_empty" mode="widthFix" src="../../images/gouwuche_empty.gif" />
+      </block>
+    </view>
+  </view>
+
+  <!-- 底部工具栏 -->
+  <view class="footer_tool">
+    <!-- 全选 -->
+    <view class="all_chk_wrap flex_center">
+      <checkbox-group bindchange="handleItemAllCheck">
+        <checkbox checked="{{allChecked}}">全选</checkbox>
+      </checkbox-group>
+    </view>
+    <!-- 总价格 -->
+    <view class="total_price_wrap">
+      <view class="total_price">
+        合计:
+        <text class="total_price_text">￥{{totalPrice}}</text>
+      </view>
+      <view>包含运费</view>
+    </view>
+    <!-- 结算 -->
+    <view class="order_pay_wrap flex_center" bindtap="handelPay">结算({{totalNum}})</view>
+  </view>
+</view>

@@ -15,7 +15,7 @@ navigator {
 
 page {
 	/* 定义主题颜色 */
-	--themColor: #eb4450;
+	--themeColor: #eb4450;
 	/* 统一字体大小 设计稿 375px */
 	font-size: 28rpx;
 }

@@ -17,7 +17,7 @@
 	"window": {
 		"backgroundTextStyle": "light",
 		"navigationBarBackgroundColor": "#eb4450",
-		"navigationBarTitleText": "优购",
+		"navigationBarTitleText": "一起购",
 		"navigationBarTextStyle": "white"
 	},
 	"tabBar": {
@@ -52,6 +52,5 @@
 			}
 		]
 	},
-	"style": "v2",
 	"sitemapLocation": "sitemap.json"
 }
